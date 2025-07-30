@@ -44,6 +44,18 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes lightning {
+            0% { opacity: 0; transform: translateX(-100px) translateY(-100px) rotate(45deg); }
+            10% { opacity: 1; }
+            20% { opacity: 0; }
+            30% { opacity: 1; }
+            40% { opacity: 0; }
+            100% { opacity: 0; transform: translateX(100px) translateY(100px) rotate(45deg); }
+        }
+        @keyframes textFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
         .fade-in-up { animation: fadeInUp 0.8s ease-out; }
         .parallax-bg {
             background-attachment: fixed;
@@ -54,11 +66,22 @@
         .storm-pulse { animation: storm-pulse 2s infinite; }
         .storm-float { animation: storm-float 3s ease-in-out infinite; }
         .storm-glow { animation: storm-glow 2s ease-in-out infinite; }
+        .text-flicker { animation: textFlicker 2s ease-in-out infinite; }
         .gradient-text {
             background: linear-gradient(45deg, #0066FF, #00FFE0, #FF00F7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        .lightning-bolt {
+            position: fixed;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(45deg, #0066FF, #00FFE0);
+            box-shadow: 0 0 10px #0066FF, 0 0 20px #00FFE0;
+            animation: lightning 3s ease-in-out;
+            z-index: 1;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -67,7 +90,12 @@
     <nav class="fixed top-0 w-full bg-storm-dark/90 backdrop-blur-md z-50 border-b border-storm-blue/30">
         <div class="max-w-6xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <div class="text-xl font-bold gradient-text storm-pulse">JACKSON_STORM429</div>
+                <div class="flex items-center gap-4">
+                    <div class="text-xl font-bold gradient-text storm-pulse">JACKSON_STORM429</div>
+                    <button onclick="showSettings()" class="text-storm-blue hover:text-storm-neon transition-colors text-xl" title="Настройки">
+                        ⚙️
+                    </button>
+                </div>
                 <div class="hidden md:flex space-x-6">
                     <button onclick="showPage('home')" class="hover:text-storm-blue transition-colors">🌪️ Главная</button>
                     <button onclick="showPage('posts')" class="hover:text-storm-blue transition-colors">🔥 Storm Posts</button>
@@ -161,48 +189,48 @@
 
             <!-- Social Links -->
             <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="#" class="flex flex-col items-center group">
+                <button onclick="showVibeFilter('instagram')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-instagram"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Instagram</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('tiktok')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-tiktok"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">TikTok</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('telegram')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-telegram"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Telegram</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('google')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-google"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Google</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('vk')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-vk"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">VK</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('facebook')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-facebook"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Facebook</div>
-                </a>
-                <a href="#" class="flex flex-col items-center group">
+                </button>
+                <button onclick="showVibeFilter('pinterest')" class="flex flex-col items-center group">
                     <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
                         <i class="fab fa-pinterest"></i>
                     </div>
                     <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Pinterest</div>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -211,6 +239,21 @@
     <div id="posts" class="page hidden min-h-screen pt-20">
         <div class="max-w-6xl mx-auto px-4 py-12">
             <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">🔥 STORM POSTS</h2>
+            
+            <!-- Search Bar -->
+            <div class="flex gap-4 mb-8 max-w-2xl mx-auto">
+                <input type="text" id="postsSearch" placeholder="Поиск по постам, тегам (#мотивация, #философия)..." class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                <button onclick="searchPosts()" class="bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                    🔍
+                </button>
+            </div>
+            
+            <!-- Add Quote Button -->
+            <div class="text-center mb-8">
+                <button onclick="showAddQuoteForm()" class="bg-gradient-to-r from-storm-neon to-storm-pink text-storm-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                    ✨ Добавить свою цитату
+                </button>
+            </div>
             
             <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-12">
@@ -353,6 +396,14 @@
     <div id="audio" class="page hidden min-h-screen pt-20">
         <div class="max-w-6xl mx-auto px-4 py-12">
             <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">🎧 ЗВУК ШТОРМА</h2>
+            
+            <!-- Search Bar -->
+            <div class="flex gap-4 mb-8 max-w-2xl mx-auto">
+                <input type="text" id="audioSearch" placeholder="Поиск по жанру, названию, настроению..." class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                <button onclick="searchAudio()" class="bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                    🔍
+                </button>
+            </div>
             
             <!-- Ultimate Vinyl Player -->
             <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
@@ -603,6 +654,14 @@
     <div id="quotes" class="page hidden min-h-screen pt-20">
         <div class="max-w-6xl mx-auto px-4 py-12">
             <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">👁️ ФРАЗЫ ЛЕГЕНДЫ</h2>
+            
+            <!-- Search Bar -->
+            <div class="flex gap-4 mb-8 max-w-2xl mx-auto">
+                <input type="text" id="quotesSearch" placeholder="Поиск по тегам (#сила, #мотивация, #философия)..." class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                <button onclick="searchQuotes()" class="bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                    🔍
+                </button>
+            </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
@@ -885,7 +944,7 @@
                             <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
                                 <div class="flex items-center gap-2 mb-1">
                                     <div class="text-storm-neon text-sm font-bold" style="font-family: 'Courier New', monospace;">Anonymous_Storm</div>
-                                    <div class="w-2 h-2 bg-green-400 rounded-full" title="⚡️ онлайн"></div>
+                                    <div class="w-2 h-2 bg-green-400 rounded-full storm-pulse" title="⚡️ онлайн"></div>
                                 </div>
                                 <div class="text-white">Крутая атмосфера! Наконец-то место где можно быть собой 🔥</div>
                                 <div class="text-xs text-gray-400 mt-2">3 минуты назад</div>
@@ -902,7 +961,7 @@
                                     <div class="text-purple-400 text-sm font-bold" style="font-family: 'Arial Black', sans-serif;">@NeonRider</div>
                                     <div class="w-2 h-2 bg-gray-400 rounded-full" title="🌪️ оффлайн"></div>
                                 </div>
-                                <div class="text-white" style="font-family: 'Courier New', monospace;">Кто-то уже получил сертификат? Я жду ответа 3 дня!</div>
+                                <div class="text-white" style="font-family: 'Courier New', monospace;">Только что @NeonRider получил 10 огоньков шторма! ⚡️</div>
                                 <div class="text-xs text-gray-400 mt-2">8 минут назад</div>
                             </div>
                         </div>
@@ -915,13 +974,19 @@
                             <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
                                 <div class="flex items-center gap-2 mb-1">
                                     <div class="text-pink-400 text-sm font-bold" style="font-family: 'Georgia', serif; font-style: italic;">@LunaStorm</div>
-                                    <div class="w-2 h-2 bg-green-400 rounded-full" title="⚡️ онлайн"></div>
+                                    <div class="w-2 h-2 bg-green-400 rounded-full storm-pulse" title="⚡️ онлайн"></div>
                                 </div>
-                                <div class="text-white" style="font-family: 'Georgia', serif; font-style: italic;">Шторм, твои цитаты — огонь. Добавь ещё про любовь! 💕</div>
+                                <div class="text-white" style="font-family: 'Georgia', serif; font-style: italic;">Кто-нибудь ещё чувствует эту энергию? 💥</div>
                                 <div class="text-xs text-gray-400 mt-2">12 минут назад</div>
                             </div>
                         </div>
                         <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+                    </div>
+                    
+                    <!-- Live Activity Notification -->
+                    <div id="liveActivity" class="bg-storm-blue/10 border border-storm-blue/30 rounded-xl p-4 text-center">
+                        <div class="text-storm-neon font-bold text-sm mb-2">🔥 Живая активность</div>
+                        <div class="text-xs text-gray-400" id="activityText">@StormChaser только что получил значок "Повелитель цитат"!</div>
                     </div>
                 </div>
                 
@@ -2280,6 +2345,298 @@
         `;
         document.head.appendChild(style);
 
+        // Vibe Filter for Social Media
+        function showVibeFilter(platform) {
+            const platformNames = {
+                instagram: 'Instagram',
+                tiktok: 'TikTok',
+                telegram: 'Telegram',
+                google: 'Google',
+                vk: 'VKontakte',
+                facebook: 'Facebook',
+                pinterest: 'Pinterest'
+            };
+            
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border-2 border-storm-blue shadow-2xl shadow-storm-blue/20">
+                    <div class="text-6xl mb-4 storm-pulse">🌪️</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-flicker">Эй, штормовой путник!</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Прежде чем перейти на <span class="text-storm-neon font-bold">${platformNames[platform]}</span>, убедись:
+                        <br><br>
+                        • Ты подписан на @Jackson_Storm429 ⚡<br>
+                        • Подал заявку на сертификат 🔥<br>
+                        • Готов к штормовой энергии 💥
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="confirmVibeCheck('${platform}', this.parentElement.parentElement.parentElement)" class="flex-1 bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                            ⚡ Подтвердить!
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="flex-1 bg-storm-gray border border-storm-blue/30 px-6 py-3 rounded-full font-bold hover:bg-storm-blue/20 transition-colors">
+                            Позже
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function confirmVibeCheck(platform, popup) {
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border-2 border-storm-neon shadow-2xl shadow-storm-neon/20">
+                    <div class="text-6xl mb-4">✅</div>
+                    <h3 class="text-2xl font-bold text-storm-neon mb-4">Вайб подтверждён!</h3>
+                    <p class="text-gray-300 mb-6">Переходим на ${platform}... Не забудь подписаться! ⚡</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-neon text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Понятно
+                    </button>
+                </div>
+            `;
+            setTimeout(() => popup.remove(), 3000);
+        }
+
+        // Lightning Animation
+        function createLightning() {
+            const lightning = document.createElement('div');
+            lightning.className = 'lightning-bolt';
+            
+            // Random position
+            const side = Math.random() < 0.5 ? 'left' : 'right';
+            const top = Math.random() * 50 + '%';
+            
+            if (side === 'left') {
+                lightning.style.left = '0px';
+                lightning.style.top = top;
+            } else {
+                lightning.style.right = '0px';
+                lightning.style.top = top;
+            }
+            
+            document.body.appendChild(lightning);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (lightning.parentNode) {
+                    lightning.parentNode.removeChild(lightning);
+                }
+            }, 3000);
+        }
+
+        // Settings Modal
+        function showSettings() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-2xl mx-4 border border-storm-blue max-h-[80vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-storm-blue">⚙️ Настройки</h3>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-gray-400 hover:text-white text-2xl">×</button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Language Settings -->
+                        <div>
+                            <label class="block text-storm-blue font-bold mb-3">🌍 Язык интерфейса</label>
+                            <select class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white focus:border-storm-blue focus:outline-none">
+                                <option value="ru">🇷🇺 Русский</option>
+                                <option value="en">🇺🇸 English</option>
+                                <option value="tj">🇹🇯 Тоҷикӣ</option>
+                                <option value="ja">🇯🇵 日本語</option>
+                                <option value="ko">🇰🇷 한국어</option>
+                                <option value="zh">🇨🇳 中文</option>
+                                <option value="ar">🇸🇦 العربية</option>
+                                <option value="es">🇪🇸 Español</option>
+                                <option value="fr">🇫🇷 Français</option>
+                                <option value="de">🇩🇪 Deutsch</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Theme Settings -->
+                        <div>
+                            <label class="block text-storm-blue font-bold mb-3">🎨 Цветовая схема</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <button onclick="changeTheme('dark')" class="bg-black border border-storm-blue/30 p-4 rounded-xl hover:border-storm-blue transition-colors">
+                                    <div class="w-full h-8 bg-gradient-to-r from-black to-gray-800 rounded mb-2"></div>
+                                    <div class="text-white text-sm">Тёмная</div>
+                                </button>
+                                <button onclick="changeTheme('blue')" class="bg-storm-blue/20 border border-storm-blue/30 p-4 rounded-xl hover:border-storm-blue transition-colors">
+                                    <div class="w-full h-8 bg-gradient-to-r from-storm-blue to-storm-electric rounded mb-2"></div>
+                                    <div class="text-white text-sm">Синяя</div>
+                                </button>
+                                <button onclick="changeTheme('neon')" class="bg-storm-neon/20 border border-storm-blue/30 p-4 rounded-xl hover:border-storm-blue transition-colors">
+                                    <div class="w-full h-8 bg-gradient-to-r from-storm-neon to-storm-pink rounded mb-2"></div>
+                                    <div class="text-white text-sm">Неон</div>
+                                </button>
+                                <button onclick="changeTheme('purple')" class="bg-purple-500/20 border border-storm-blue/30 p-4 rounded-xl hover:border-storm-blue transition-colors">
+                                    <div class="w-full h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded mb-2"></div>
+                                    <div class="text-white text-sm">Фиолетовая</div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Personal Cabinet -->
+                        <div class="border-t border-storm-blue/30 pt-6">
+                            <h4 class="text-xl font-bold text-storm-blue mb-4">👤 Личный кабинет</h4>
+                            <div class="space-y-4">
+                                <input type="text" placeholder="Твой никнейм" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                                <input type="email" placeholder="Email" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                                <div class="flex gap-4">
+                                    <button class="flex-1 bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                                        📷 Загрузить аватар
+                                    </button>
+                                    <button onclick="showVibeConstructor()" class="flex-1 bg-gradient-to-r from-storm-neon to-storm-pink text-storm-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition-all">
+                                        🎨 Создать VIBE-сайт
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function changeTheme(theme) {
+            // Theme changing logic would go here
+            alert(`🎨 Тема "${theme}" будет применена в следующем обновлении!`);
+        }
+
+        function showVibeConstructor() {
+            alert('🎨 VIBE-конструктор запускается... Функция будет доступна в следующем обновлении!');
+        }
+
+        // Search Functions
+        function searchPosts() {
+            const query = document.getElementById('postsSearch').value.toLowerCase();
+            if (query.trim()) {
+                alert(`🔍 Поиск "${query}" в постах... Функция будет доступна в следующем обновлении!`);
+            }
+        }
+
+        function searchAudio() {
+            const query = document.getElementById('audioSearch').value.toLowerCase();
+            if (query.trim()) {
+                alert(`🔍 Поиск "${query}" в аудио... Функция будет доступна в следующем обновлении!`);
+            }
+        }
+
+        function searchQuotes() {
+            const query = document.getElementById('quotesSearch').value.toLowerCase();
+            if (query.trim()) {
+                alert(`🔍 Поиск "${query}" в цитатах... Функция будет доступна в следующем обновлении!`);
+            }
+        }
+
+        // Add Quote Form
+        function showAddQuoteForm() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 border border-storm-blue">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">✨ Добавить цитату</h3>
+                    <div class="space-y-4">
+                        <textarea placeholder="Твоя мудрость..." class="w-full bg-storm-dark border border-storm-blue/30 rounded-2xl px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none h-32 resize-none"></textarea>
+                        <select class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white focus:border-storm-blue focus:outline-none">
+                            <option value="">Выбери категорию</option>
+                            <option value="motivation">Мотивация</option>
+                            <option value="philosophy">Философия</option>
+                            <option value="relationships">Отношения</option>
+                            <option value="humor">Стёб</option>
+                        </select>
+                        <div class="flex gap-4">
+                            <button onclick="submitQuote(this.parentElement.parentElement.parentElement)" class="flex-1 bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition-all">
+                                🚀 Отправить
+                            </button>
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="flex-1 bg-storm-gray border border-storm-blue/30 px-6 py-3 rounded-full font-bold hover:bg-storm-blue/20 transition-colors">
+                                Отмена
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function submitQuote(popup) {
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">💣</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">На модерации!</h3>
+                    <p class="text-gray-300 mb-6">Твоя цитата на модерации. Если она взорвёт нам мозг — мы её опубликуем!</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Понятно
+                    </button>
+                </div>
+            `;
+        }
+
+        // Enhanced Chat Functions
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start gap-3 animate-fade-in';
+            messageDiv.innerHTML = `
+                <div class="w-10 h-10 bg-gradient-to-br from-storm-neon to-storm-pink rounded-full flex items-center justify-center text-white font-bold">U</div>
+                <div class="flex-1">
+                    <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                        <div class="flex items-center gap-2 mb-1">
+                            <div class="text-storm-neon text-sm font-bold">Пользователь</div>
+                            <div class="w-2 h-2 bg-green-400 rounded-full storm-pulse" title="⚡️ онлайн"></div>
+                        </div>
+                        <div class="text-white">${message}</div>
+                        <div class="text-xs text-gray-400 mt-2">только что</div>
+                    </div>
+                </div>
+                <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            input.value = '';
+            
+            // Show storm fire notification
+            showStormFireNotification();
+        }
+
+        function showStormFireNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-24 right-4 bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-6 py-3 rounded-full font-bold z-50 storm-glow';
+            notification.innerHTML = '🔥 Ты только что получил Огонёк Шторма! Продолжай в том же духе!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Live Activity Updates
+        const liveActivities = [
+            "@StormChaser только что получил значок 'Повелитель цитат'!",
+            "@NeonRider получил 15 огоньков шторма! ⚡️",
+            "@LunaStorm поднялась на 3 место в рейтинге!",
+            "@VortexQueen получила сертификат Elite JS!",
+            "Кто-то только что разблокировал секретный архив! 🌌",
+            "@ThunderBolt получил роль 'Storm Chaser' в мини-игре!"
+        ];
+
+        function updateLiveActivity() {
+            const activityElement = document.getElementById('activityText');
+            if (activityElement) {
+                const randomActivity = liveActivities[Math.floor(Math.random() * liveActivities.length)];
+                activityElement.textContent = randomActivity;
+                activityElement.parentElement.classList.add('storm-pulse');
+                setTimeout(() => {
+                    activityElement.parentElement.classList.remove('storm-pulse');
+                }, 2000);
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             showPage('home');
@@ -2301,7 +2658,13 @@
             
             // Show notification popup after 10 seconds
             setTimeout(showNotificationPopup, 10000);
+            
+            // Start lightning animation
+            setInterval(createLightning, 30000);
+            
+            // Update live activity every 15 seconds
+            setInterval(updateLiveActivity, 15000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9670f3ffc26ae32e',t:'MTc1MzgzNzU4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96789a18a77db613',t:'MTc1MzkxNzc4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
