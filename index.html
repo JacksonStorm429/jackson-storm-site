@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JACKSON_STORM429 // VIBE UNIVERSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'storm-dark': '#121212',
+                        'storm-gray': '#1E1E1E',
+                        'storm-blue': '#0066FF',
+                        'storm-electric': '#0066FF',
+                        'storm-neon': '#00FFE0',
+                        'storm-pink': '#FF00F7'
+                    },
+                    fontFamily: {
+                        'storm': ['Bebas Neue', 'sans-serif'],
+                        'tech': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes storm-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes storm-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes storm-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .storm-pulse { animation: storm-pulse 2s infinite; }
+        .storm-float { animation: storm-float 3s ease-in-out infinite; }
+        .storm-glow { animation: storm-glow 2s ease-in-out infinite; }
+        .gradient-text {
+            background: linear-gradient(45deg, #0066FF, #00FFE0, #FF00F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-storm-dark text-white font-tech overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-storm-dark/90 backdrop-blur-md z-50 border-b border-storm-blue/30">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text storm-pulse">JACKSON_STORM429</div>
+                <div class="hidden md:flex space-x-6">
+                    <button onclick="showPage('home')" class="hover:text-storm-blue transition-colors">🌪️ Главная</button>
+                    <button onclick="showPage('posts')" class="hover:text-storm-blue transition-colors">🔥 Storm Posts</button>
+                    <button onclick="showPage('audio')" class="hover:text-storm-blue transition-colors">🎧 Звук Шторма</button>
+                    <button onclick="showPage('quotes')" class="hover:text-storm-blue transition-colors">👁️ Фразы Легенды</button>
+                    <button onclick="showPage('about')" class="hover:text-storm-blue transition-colors">⚙️ Легенда</button>
+                    <button onclick="showPage('contact')" class="hover:text-storm-blue transition-colors">💌 Контакты</button>
+                    <button onclick="showPage('certification')" class="hover:text-storm-blue transition-colors">📜 Сертификация</button>
+                    <button onclick="showPage('chat')" class="hover:text-storm-blue transition-colors">💬 Storm Chat</button>
+                    <button onclick="showPage('elite')" class="hover:text-storm-blue transition-colors">👑 Элита</button>
+                    <button onclick="showPage('shop')" class="hover:text-storm-blue transition-colors">🛒 Storm Shop</button>
+                    <button onclick="showPage('future')" class="hover:text-storm-blue transition-colors">🚀 Что дальше?</button>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-storm-blue">☰</button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-storm-gray/95 backdrop-blur-md">
+            <div class="px-4 py-2 space-y-2">
+                <button onclick="showPage('home')" class="block w-full text-left py-2 hover:text-storm-blue">🌪️ Главная</button>
+                <button onclick="showPage('posts')" class="block w-full text-left py-2 hover:text-storm-blue">🔥 Storm Posts</button>
+                <button onclick="showPage('audio')" class="block w-full text-left py-2 hover:text-storm-blue">🎧 Звук Шторма</button>
+                <button onclick="showPage('quotes')" class="block w-full text-left py-2 hover:text-storm-blue">👁️ Фразы Легенды</button>
+                <button onclick="showPage('about')" class="block w-full text-left py-2 hover:text-storm-blue">⚙️ Легенда</button>
+                <button onclick="showPage('contact')" class="block w-full text-left py-2 hover:text-storm-blue">💌 Контакты</button>
+                <button onclick="showPage('certification')" class="block w-full text-left py-2 hover:text-storm-blue">📜 Сертификация</button>
+                <button onclick="showPage('chat')" class="block w-full text-left py-2 hover:text-storm-blue">💬 Storm Chat</button>
+                <button onclick="showPage('elite')" class="block w-full text-left py-2 hover:text-storm-blue">👑 Элита</button>
+                <button onclick="showPage('shop')" class="block w-full text-left py-2 hover:text-storm-blue">🛒 Storm Shop</button>
+                <button onclick="showPage('future')" class="block w-full text-left py-2 hover:text-storm-blue">🚀 Что дальше?</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <div class="text-center mb-16">
+                <h1 class="text-6xl md:text-8xl font-bold gradient-text mb-6 storm-float font-storm">JACKSON_STORM429</h1>
+                <div class="text-2xl md:text-3xl text-storm-blue mb-8 storm-pulse">VIBE UNIVERSE</div>
+                <div class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    "Я не просто ник, я явление" 😎
+                </div>
+                <button onclick="showPage('posts')" class="bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all storm-glow mb-12">
+                    ⚡ Войти в вихрь
+                </button>
+            </div>
+
+            <!-- Hero Art -->
+            <div class="flex justify-center mb-16">
+                <div class="w-64 h-64 bg-gradient-to-br from-storm-blue to-storm-electric rounded-full storm-glow flex items-center justify-center">
+                    <div class="text-8xl storm-float">⚡</div>
+                </div>
+            </div>
+
+            <!-- Quote of the Day -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-12 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4">💭 Цитата дня</h3>
+                <p id="dailyQuote" class="text-xl italic text-gray-300 mb-4">"Шторм не спрашивает разрешения. Он просто приходит."</p>
+                <button onclick="shareQuote()" class="bg-storm-neon text-storm-dark px-6 py-2 rounded-full font-bold hover:bg-storm-pink transition-colors">
+                    📤 Поделиться
+                </button>
+            </div>
+
+            <!-- Storm Rating Section -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-12 border border-storm-blue/30 text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4">⭐ Оценка Шторма</h3>
+                <p class="text-gray-300 mb-6 italic">"Твой рейтинг в эпицентре бури"</p>
+                
+                <!-- Current Rating Display -->
+                <div class="mb-6">
+                    <div class="flex justify-center gap-2 mb-4" id="currentRating">
+                        <span class="text-4xl text-yellow-400 cursor-pointer hover:scale-125 transition-all">⭐</span>
+                        <span class="text-4xl text-yellow-400 cursor-pointer hover:scale-125 transition-all">⭐</span>
+                        <span class="text-4xl text-yellow-400 cursor-pointer hover:scale-125 transition-all">⭐</span>
+                        <span class="text-4xl text-yellow-400 cursor-pointer hover:scale-125 transition-all">⭐</span>
+                        <span class="text-4xl text-yellow-400 cursor-pointer hover:scale-125 transition-all">⭐</span>
+                    </div>
+                    <div class="text-lg text-storm-neon font-bold">4.9/5 ⚡ (2,847 оценок)</div>
+                </div>
+                
+                <div class="text-sm text-gray-400 mb-4">Нажми на звезду для оценки:</div>
+                <div class="flex justify-center gap-2" id="interactiveRating">
+                    <span class="text-4xl text-gray-600 cursor-pointer hover:scale-125 transition-all hover:text-yellow-400" onclick="rateStorm(1)">⭐</span>
+                    <span class="text-4xl text-gray-600 cursor-pointer hover:scale-125 transition-all hover:text-yellow-400" onclick="rateStorm(2)">⭐</span>
+                    <span class="text-4xl text-gray-600 cursor-pointer hover:scale-125 transition-all hover:text-yellow-400" onclick="rateStorm(3)">⭐</span>
+                    <span class="text-4xl text-gray-600 cursor-pointer hover:scale-125 transition-all hover:text-yellow-400" onclick="rateStorm(4)">⭐</span>
+                    <span class="text-4xl text-gray-600 cursor-pointer hover:scale-125 transition-all hover:text-yellow-400" onclick="rateStorm(5)">⭐</span>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Instagram</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">TikTok</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Telegram</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Google</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-vk"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">VK</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Facebook</div>
+                </a>
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all storm-glow">
+                        <i class="fab fa-pinterest"></i>
+                    </div>
+                    <div class="text-xs mt-2 text-gray-300 group-hover:text-storm-neon transition-colors">Pinterest</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Storm Posts Page -->
+    <div id="posts" class="page hidden min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">🔥 STORM POSTS</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="filterPosts('all')" class="filter-btn active bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold hover:bg-storm-electric transition-colors">Все</button>
+                <button onclick="filterPosts('motivation')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">Мотивация</button>
+                <button onclick="filterPosts('philosophy')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">Философия</button>
+                <button onclick="filterPosts('relationships')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">Отношения</button>
+                <button onclick="filterPosts('books')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">Книги</button>
+                <button onclick="filterPosts('humor')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">Стёб</button>
+                <button onclick="filterPosts('legends')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">🏆 Легенды</button>
+                <button onclick="filterPosts('rebel')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">🔥 Бунт</button>
+                <button onclick="filterPosts('vibecheck')" class="filter-btn bg-storm-gray px-6 py-2 rounded-full hover:bg-storm-blue hover:text-storm-dark transition-colors">✨ VibeCheck</button>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="post-card motivation bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">МОТИВАЦИЯ</div>
+                    <h3 class="text-xl font-bold mb-4">Сила в движении</h3>
+                    <p class="text-gray-300 mb-4">"Не жди идеального момента. Шторм не спрашивает, готов ли мир к нему."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">2 дня назад</div>
+                        <div class="flex gap-2">
+                            <button class="text-storm-neon hover:text-storm-pink transition-colors">❤️</button>
+                            <button class="text-storm-neon hover:text-storm-pink transition-colors">💾</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-card philosophy bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">ФИЛОСОФИЯ</div>
+                    <h3 class="text-xl font-bold mb-4">О времени</h3>
+                    <p class="text-gray-300">"Время — это иллюзия. Есть только моменты, которые мы делаем вечными."</p>
+                    <div class="text-xs text-gray-500 mt-4">5 дней назад</div>
+                </div>
+
+                <div class="post-card relationships bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">ОТНОШЕНИЯ</div>
+                    <h3 class="text-xl font-bold mb-4">Энергия притяжения</h3>
+                    <p class="text-gray-300">"Не ищи того, кто дополнит тебя. Ищи того, кто усилит твою энергию."</p>
+                    <div class="text-xs text-gray-500 mt-4">1 неделю назад</div>
+                </div>
+
+                <div class="post-card books bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">КНИГИ</div>
+                    <h3 class="text-xl font-bold mb-4">Читаю сейчас</h3>
+                    <p class="text-gray-300">"Атлант расправил плечи" — книга о том, как не сломаться под весом мира.</p>
+                    <div class="text-xs text-gray-500 mt-4">3 дня назад</div>
+                </div>
+
+                <div class="post-card humor bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">СТЁБ</div>
+                    <h3 class="text-xl font-bold mb-4">Про интровертов</h3>
+                    <p class="text-gray-300">"Интроверт — это не тот, кто боится людей. Это тот, кто экономит энергию на достойных." 😏</p>
+                    <div class="text-xs text-gray-500 mt-4">6 дней назад</div>
+                </div>
+
+                <div class="post-card motivation bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">МОТИВАЦИЯ</div>
+                    <h3 class="text-xl font-bold mb-4">Про успех</h3>
+                    <p class="text-gray-300 mb-4">"Успех — это не конечная точка. Это способность продолжать после каждого падения."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">1 день назад</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">247</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="post-card legends bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">🏆 ЛЕГЕНДЫ</div>
+                    <h3 class="text-xl font-bold mb-4">Майкл Джордан</h3>
+                    <p class="text-gray-300 mb-4">"Я промахивался более 9000 раз в своей карьере. Я проиграл почти 300 игр. 26 раз мне доверяли сделать победный бросок, и я промахивался. Я терпел неудачу снова и снова. И именно поэтому я добился успеха."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">3 часа назад</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">892</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="post-card rebel bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">🔥 БУНТ</div>
+                    <h3 class="text-xl font-bold mb-4">Киберпанк вайб</h3>
+                    <p class="text-gray-300 mb-4">"В Night City ты либо живёшь как легенда, либо умираешь как никто. Третьего не дано." — Джонни Сильверхенд</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">6 часов назад</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">1.2K</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="post-card vibecheck bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">✨ VIBECHECK</div>
+                    <h3 class="text-xl font-bold mb-4">Случайный вайб</h3>
+                    <p class="text-gray-300 mb-4" id="randomVibeQuote">"Не бойся быть другим. Бойся быть как все."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">Обновляется каждый раз</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">156</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="post-card legends bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">🏆 ЛЕГЕНДЫ</div>
+                    <h3 class="text-xl font-bold mb-4">Фридрих Ницше</h3>
+                    <p class="text-gray-300 mb-4">"То, что нас не убивает, делает нас сильнее. Но помни — ты должен стать тем, кто ты есть."</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">12 часов назад</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">634</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="post-card rebel bg-storm-gray/50 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/30 hover:border-storm-blue transition-all">
+                    <div class="text-storm-blue text-sm mb-2">🔥 БУНТ</div>
+                    <h3 class="text-xl font-bold mb-4">Аниме мудрость</h3>
+                    <p class="text-gray-300 mb-4">"Люди умирают, когда их убивают. Но легенды живут вечно." — Сенку Ишигами</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">1 день назад</div>
+                        <button onclick="likePost(this)" class="flex items-center gap-2 text-storm-neon hover:text-storm-pink transition-colors">
+                            <span>👍</span>
+                            <span class="like-count">445</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Page -->
+    <div id="audio" class="page hidden min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">🎧 ЗВУК ШТОРМА</h2>
+            
+            <!-- Ultimate Vinyl Player -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6">🎵 Ultimate Storm Player</h3>
+                
+                <!-- Vinyl Record -->
+                <div class="flex justify-center mb-8">
+                    <div class="relative">
+                        <div id="vinylRecord" class="w-48 h-48 bg-gradient-to-br from-storm-dark to-storm-gray rounded-full border-4 border-storm-blue/30 flex items-center justify-center relative overflow-hidden">
+                            <!-- Vinyl grooves -->
+                            <div class="absolute inset-4 border border-storm-blue/20 rounded-full"></div>
+                            <div class="absolute inset-8 border border-storm-blue/20 rounded-full"></div>
+                            <div class="absolute inset-12 border border-storm-blue/20 rounded-full"></div>
+                            <!-- Center label -->
+                            <div class="w-16 h-16 bg-storm-blue rounded-full flex items-center justify-center">
+                                <div class="text-storm-dark font-bold text-xs">JS429</div>
+                            </div>
+                        </div>
+                        <!-- Needle -->
+                        <div class="absolute top-4 right-8 w-20 h-1 bg-storm-neon rounded-full transform rotate-45 origin-right"></div>
+                    </div>
+                </div>
+                
+                <!-- Player Controls -->
+                <div class="flex justify-center items-center gap-6 mb-6">
+                    <button onclick="previousTrack()" class="w-12 h-12 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark hover:bg-storm-electric transition-colors">
+                        ⏮️
+                    </button>
+                    <button id="playPauseBtn" onclick="togglePlay()" class="w-16 h-16 bg-gradient-to-r from-storm-blue to-storm-neon rounded-full flex items-center justify-center text-storm-dark text-2xl hover:scale-105 transition-all storm-glow">
+                        ▶️
+                    </button>
+                    <button onclick="nextTrack()" class="w-12 h-12 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark hover:bg-storm-electric transition-colors">
+                        ⏭️
+                    </button>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm text-gray-400 mb-2">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">3:45</span>
+                    </div>
+                    <div class="w-full bg-storm-dark rounded-full h-2 relative overflow-hidden">
+                        <div id="progressBar" class="h-full bg-gradient-to-r from-storm-blue to-storm-neon rounded-full transition-all" style="width: 35%"></div>
+                        <!-- Lightning effect -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-pulse"></div>
+                    </div>
+                </div>
+                
+                <!-- Volume Control -->
+                <div class="flex items-center justify-center gap-4">
+                    <span class="text-storm-blue">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="75" class="w-32 h-2 bg-storm-dark rounded-full appearance-none slider">
+                    <span class="text-storm-blue text-sm" id="volumeValue">75%</span>
+                </div>
+                
+                <!-- Current Track Info -->
+                <div class="mt-6 p-4 bg-storm-dark/50 rounded-xl">
+                    <div class="font-bold text-storm-neon" id="currentTrack">Storm Energy - Motivation Mix</div>
+                    <div class="text-sm text-gray-400" id="currentArtist">Jackson_Storm429</div>
+                </div>
+            </div>
+            
+            <!-- Music Search -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6">🔍 Поиск треков</h3>
+                <div class="flex gap-4 mb-6">
+                    <input type="text" id="trackSearch" placeholder="Найти трек, исполнителя или настроение..." class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                    <button onclick="searchTracks()" class="bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                        Найти ⚡
+                    </button>
+                </div>
+                
+                <!-- Connected Services -->
+                <div class="text-center">
+                    <div class="text-sm text-gray-400 mb-4">Подключённые сервисы:</div>
+                    <div class="flex justify-center gap-6">
+                        <a href="#" class="flex flex-col items-center group">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all">
+                                <i class="fab fa-spotify text-xl"></i>
+                            </div>
+                            <div class="text-xs mt-2 text-gray-400 group-hover:text-storm-neon">Spotify</div>
+                        </a>
+                        <a href="#" class="flex flex-col items-center group">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </div>
+                            <div class="text-xs mt-2 text-gray-400 group-hover:text-storm-neon">YouTube Music</div>
+                        </a>
+                        <a href="#" class="flex flex-col items-center group">
+                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all">
+                                <i class="fab fa-soundcloud text-xl"></i>
+                            </div>
+                            <div class="text-xs mt-2 text-gray-400 group-hover:text-storm-neon">SoundCloud</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Audio Phrases -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-6">🎤 Голосовые вайбы</h3>
+                    <div class="space-y-4 max-h-80 overflow-y-auto">
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">О силе характера</div>
+                                <div class="text-sm text-gray-400">2:34</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Мысли перед сном</div>
+                                <div class="text-sm text-gray-400">4:12</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Про энергию утра</div>
+                                <div class="text-sm text-gray-400">1:58</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Философия одиночества</div>
+                                <div class="text-sm text-gray-400">3:27</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Про настоящую дружбу</div>
+                                <div class="text-sm text-gray-400">2:45</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Энергия и люди</div>
+                                <div class="text-sm text-gray-400">5:18</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Как не сломаться</div>
+                                <div class="text-sm text-gray-400">4:33</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 flex items-center justify-between">
+                            <div>
+                                <div class="font-bold">Про деньги и успех</div>
+                                <div class="text-sm text-gray-400">3:52</div>
+                            </div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">▶️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playlists -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-6">🎵 Мои плейлисты</h3>
+                    <div class="space-y-4 max-h-80 overflow-y-auto">
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">⚡ Storm Energy</div>
+                            <div class="text-sm text-gray-400 mb-3">Треки для прокачки энергии</div>
+                            <div class="text-xs text-storm-blue">24 трека • 1ч 32мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🌙 Midnight Thoughts</div>
+                            <div class="text-sm text-gray-400 mb-3">Музыка для глубоких размышлений</div>
+                            <div class="text-xs text-storm-blue">18 треков • 58мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🔥 Workout Storm</div>
+                            <div class="text-sm text-gray-400 mb-3">Качаемся под мощные биты</div>
+                            <div class="text-xs text-storm-blue">31 трек • 2ч 15мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🎯 Focus Mode</div>
+                            <div class="text-sm text-gray-400 mb-3">Концентрация на максимум</div>
+                            <div class="text-xs text-storm-blue">42 трека • 2ч 47мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🌊 Chill Vibes</div>
+                            <div class="text-sm text-gray-400 mb-3">Расслабляющие биты</div>
+                            <div class="text-xs text-storm-blue">27 треков • 1ч 23мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🎸 Rock Storm</div>
+                            <div class="text-sm text-gray-400 mb-3">Рок для бунтарей</div>
+                            <div class="text-xs text-storm-blue">35 треков • 2ч 8мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🎹 Piano Emotions</div>
+                            <div class="text-sm text-gray-400 mb-3">Эмоциональные пианино</div>
+                            <div class="text-xs text-storm-blue">19 треков • 1ч 12мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🌆 City Nights</div>
+                            <div class="text-sm text-gray-400 mb-3">Ночной город в звуках</div>
+                            <div class="text-xs text-storm-blue">29 треков • 1ч 54мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🎭 Anime OST</div>
+                            <div class="text-sm text-gray-400 mb-3">Саундтреки из аниме</div>
+                            <div class="text-xs text-storm-blue">47 треков • 3ч 21мин</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 cursor-pointer hover:bg-storm-blue/10 transition-colors">
+                            <div class="font-bold mb-2">🚗 Drive Mode</div>
+                            <div class="text-sm text-gray-400 mb-3">Музыка для поездок</div>
+                            <div class="text-xs text-storm-blue">38 треков • 2ч 33мин</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Podcast Section -->
+            <div class="mt-12 bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6">🎙️ Штормовые беседы</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <div class="text-lg font-bold mb-2">Эпизод #1: Про внутреннюю силу</div>
+                        <div class="text-sm text-gray-400 mb-4">Разговор о том, откуда берётся настоящая сила характера</div>
+                        <div class="flex justify-between items-center">
+                            <div class="text-xs text-storm-blue">45 минут</div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">Слушать</button>
+                        </div>
+                    </div>
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <div class="text-lg font-bold mb-2">Эпизод #2: Энергия и люди</div>
+                        <div class="text-sm text-gray-400 mb-4">Как не растрачивать себя на тех, кто этого не ценит</div>
+                        <div class="flex justify-between items-center">
+                            <div class="text-xs text-storm-blue">38 минут</div>
+                            <button class="bg-storm-blue text-storm-dark px-4 py-2 rounded-full hover:bg-storm-electric transition-colors">Слушать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quotes Page -->
+    <div id="quotes" class="page hidden min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">👁️ ФРАЗЫ ЛЕГЕНДЫ</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">⚡</div>
+                    <p class="text-xl font-bold text-center mb-4">"Шторм не извиняется за свою силу"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-electric/20 to-storm-neon/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🌪️</div>
+                    <p class="text-xl font-bold text-center mb-4">"Тишина перед бурей — это не покой, это подготовка"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-neon/20 to-storm-blue/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🔥</div>
+                    <p class="text-xl font-bold text-center mb-4">"Не будь копией. Будь оригиналом, которого копируют"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">💎</div>
+                    <p class="text-xl font-bold text-center mb-4">"Давление создаёт алмазы, а не жалобы"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-electric/20 to-storm-neon/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🎯</div>
+                    <p class="text-xl font-bold text-center mb-4">"Цель без действия — просто мечта"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-neon/20 to-storm-blue/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🌟</div>
+                    <p class="text-xl font-bold text-center mb-4">"Звёзды светят ярче в самую тёмную ночь"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">👁️</div>
+                    <p class="text-xl font-bold text-center mb-4">"Я не ищу признания. Я создаю реальность, где его невозможно игнорировать"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-electric/20 to-storm-neon/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🌪️</div>
+                    <p class="text-xl font-bold text-center mb-4">"Ты либо часть вихря, либо пыль у него на пути"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-storm-neon/20 to-storm-blue/20 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 storm-glow">
+                    <div class="text-6xl mb-4 text-center">🔥</div>
+                    <p class="text-xl font-bold text-center mb-4">"Если тебя не обсуждают — ты не угроза"</p>
+                    <div class="text-center text-sm text-gray-400">— Jackson Storm</div>
+                </div>
+            </div>
+
+            <!-- Quote Generator -->
+            <div class="mt-12 bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6">🎲 Генератор вайба</h3>
+                <div id="randomQuote" class="text-xl font-bold mb-6 min-h-[60px] flex items-center justify-center">
+                    "Нажми кнопку и получи дозу мотивации"
+                </div>
+                <button onclick="generateRandomQuote()" class="bg-storm-blue text-storm-dark px-8 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors storm-glow">
+                    Новая фраза ⚡
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page hidden min-h-screen pt-20">
+        <div class="max-w-4xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">⚙️ ЛЕГЕНДА</h2>
+            
+            <!-- Storm Origins -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30">
+                <h3 class="text-3xl font-bold text-storm-blue mb-6 text-center">🌪️ Storm Origins</h3>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-48 bg-gradient-to-br from-storm-blue to-storm-electric rounded-full storm-glow flex items-center justify-center">
+                        <div class="text-6xl">🏁</div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-lg text-gray-300 mb-4 italic">
+                            "Он не просто гонщик. Он — буря, сметающая всех на пути. Но за холодным фасадом скрывается боец, который научился побеждать в одиночку."
+                        </p>
+                        <p class="text-lg text-gray-300 mb-4">
+                            Из мира гонок в цифровую вселенную. Jackson Storm — это не просто персонаж, это философия скорости, точности и безжалостной эффективности. Каждый поворот — это урок, каждая победа — это шаг к легенде.
+                        </p>
+                        <p class="text-lg text-gray-300 mb-4">
+                            429 — это не просто число. Это код доступа к новому уровню мышления.
+                        </p>
+                        <p class="text-xl text-storm-neon font-bold italic text-center">
+                            "Меня не нужно понимать. Мной нужно заразиться."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Archive Section -->
+                <div class="mt-8 pt-8 border-t border-storm-blue/30">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="text-2xl font-bold text-storm-blue">📁 Архив Шторма</h4>
+                        <button onclick="unlockArchive()" class="bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-6 py-2 rounded-full font-bold hover:scale-105 transition-all">
+                            🔓 Разблокировать скрытые материалы
+                        </button>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-storm-dark/50 rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">📸</div>
+                            <div class="font-bold text-sm">Редкие кадры</div>
+                            <div class="text-xs text-gray-400">47 фото</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">🎬</div>
+                            <div class="font-bold text-sm">Скриншоты</div>
+                            <div class="text-xs text-gray-400">23 изображения</div>
+                        </div>
+                        <div class="bg-storm-dark/50 rounded-xl p-4 text-center">
+                            <div class="text-3xl mb-2">😂</div>
+                            <div class="font-bold text-sm">Мемы</div>
+                            <div class="text-xs text-gray-400">156 шедевров</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">🧠 Моя философия</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• Интроверт, который штурмует мир</li>
+                        <li>• Качество важнее количества</li>
+                        <li>• Энергия — самый ценный ресурс</li>
+                        <li>• Аутентичность > популярность</li>
+                        <li>• Действие > размышления</li>
+                    </ul>
+                </div>
+
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">⚡ Что меня вдохновляет</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• Люди, которые не боятся быть собой</li>
+                        <li>• Книги, меняющие мышление</li>
+                        <li>• Музыка с глубоким смыслом</li>
+                        <li>• Искренние разговоры</li>
+                        <li>• Моменты абсолютной тишины</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">🎯 Миссия</h3>
+                <p class="text-xl text-center text-gray-300 leading-relaxed">
+                    Показать, что можно быть интровертом и при этом оставлять след в мире. 
+                    Что сила не в громкости, а в глубине. Что настоящий вайб — это не маска, а искренность.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certification Page -->
+    <div id="certification" class="page hidden min-h-screen pt-20">
+        <div class="max-w-4xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center font-storm">📜 СЕРТИФИКАЦИЯ</h2>
+            
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
+                <h3 class="text-3xl font-bold text-storm-blue mb-4 font-storm">Официальный сертификат Jackson_Storm429</h3>
+                <p class="text-lg text-gray-300 mb-8">Получи официальную галочку верификации от Jackson_Storm429</p>
+                
+                <!-- Certification Form -->
+                <div class="max-w-md mx-auto">
+                    <div class="space-y-4 mb-6">
+                        <input type="text" placeholder="Твоё имя" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                        <input type="email" placeholder="Email" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                        <select class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white focus:border-storm-blue focus:outline-none">
+                            <option value="">Выбери соцсеть</option>
+                            <option value="instagram">📷 Instagram</option>
+                            <option value="tiktok">🎵 TikTok</option>
+                            <option value="twitter">🐦 Twitter/X</option>
+                            <option value="telegram">✈️ Telegram</option>
+                            <option value="vk">🔵 VKontakte</option>
+                            <option value="facebook">📘 Facebook</option>
+                            <option value="youtube">📺 YouTube</option>
+                            <option value="discord">🎮 Discord</option>
+                        </select>
+                    </div>
+                    <button class="bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-8 py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        📤 Отправить на проверку
+                    </button>
+                </div>
+            </div>
+
+
+
+            <!-- Testimonials -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">💬 Отзывы сертифицированных</h3>
+                <div class="space-y-6">
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <p class="text-gray-300 mb-4 italic">"Сертификат Storm Shadow изменил всё. Теперь меня узнают."</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-storm-neon to-storm-pink rounded-full flex items-center justify-center text-white font-bold">V</div>
+                                <div>
+                                    <div class="font-bold text-storm-neon">@VortexQueen</div>
+                                    <div class="text-xs text-gray-400">24.05.2024</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-storm-pink">
+                                <span>♡</span>
+                                <span>1.2K</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <p class="text-gray-300 mb-4 italic">"Галочка от Jackson_Storm429 — это не просто статус, это образ жизни."</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-storm-blue to-storm-electric rounded-full flex items-center justify-center text-white font-bold">N</div>
+                                <div>
+                                    <div class="font-bold text-storm-blue">@NeonRider</div>
+                                    <div class="text-xs text-gray-400">18.05.2024</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-storm-pink">
+                                <span>♡</span>
+                                <span>847</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conditions -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4">⚡ Условия получения</h3>
+                <div class="text-gray-300 space-y-3">
+                    <p>• Галочка выдаётся только реальным подписчикам</p>
+                    <p>• Проверка занимает до 24 часов</p>
+                    <p>• Необходимо быть активным фолловером минимум 30 дней</p>
+                    <p>• Фейковые аккаунты автоматически отклоняются</p>
+                    <p>• Сертификат действителен 1 год</p>
+                </div>
+                <div class="mt-6 p-4 bg-storm-blue/10 rounded-xl border border-storm-blue/30">
+                    <p class="text-storm-neon font-bold text-center">
+                        "Сертификат — это не просто галочка, это признание твоего вайба" — Jackson_Storm429
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Storm Chat Page -->
+    <div id="chat" class="page hidden min-h-screen pt-20">
+        <div class="max-w-4xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center font-storm">💬 STORM CHAT</h2>
+            <p class="text-center text-gray-300 mb-8">Глобальный чат — пространство, где любой может оставить сообщение</p>
+            
+            <!-- Chat Container -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl border border-storm-blue/30 overflow-hidden">
+                <!-- Chat Messages -->
+                <div id="chatMessages" class="h-96 overflow-y-auto p-6 space-y-4">
+                    <div class="flex items-start gap-3 animate-fade-in">
+                        <div class="w-10 h-10 bg-gradient-to-br from-storm-blue to-storm-electric rounded-full flex items-center justify-center text-white font-bold">J</div>
+                        <div class="flex-1">
+                            <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                                <div class="text-storm-blue text-sm mb-1">Jackson_Storm429</div>
+                                <div class="text-white">Добро пожаловать в Storm Chat! Здесь каждый может поделиться своими мыслями ⚡</div>
+                                <div class="text-xs text-gray-400 mt-2">5 минут назад</div>
+                            </div>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+                    </div>
+                    
+                    <div class="flex items-start gap-3 animate-fade-in">
+                        <div class="w-10 h-10 bg-gradient-to-br from-storm-neon to-storm-pink rounded-full flex items-center justify-center text-white font-bold">A</div>
+                        <div class="flex-1">
+                            <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="text-storm-neon text-sm font-bold" style="font-family: 'Courier New', monospace;">Anonymous_Storm</div>
+                                    <div class="w-2 h-2 bg-green-400 rounded-full" title="⚡️ онлайн"></div>
+                                </div>
+                                <div class="text-white">Крутая атмосфера! Наконец-то место где можно быть собой 🔥</div>
+                                <div class="text-xs text-gray-400 mt-2">3 минуты назад</div>
+                            </div>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+                    </div>
+                    
+                    <div class="flex items-start gap-3 animate-fade-in">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">N</div>
+                        <div class="flex-1">
+                            <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="text-purple-400 text-sm font-bold" style="font-family: 'Arial Black', sans-serif;">@NeonRider</div>
+                                    <div class="w-2 h-2 bg-gray-400 rounded-full" title="🌪️ оффлайн"></div>
+                                </div>
+                                <div class="text-white" style="font-family: 'Courier New', monospace;">Кто-то уже получил сертификат? Я жду ответа 3 дня!</div>
+                                <div class="text-xs text-gray-400 mt-2">8 минут назад</div>
+                            </div>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+                    </div>
+                    
+                    <div class="flex items-start gap-3 animate-fade-in">
+                        <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold">L</div>
+                        <div class="flex-1">
+                            <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="text-pink-400 text-sm font-bold" style="font-family: 'Georgia', serif; font-style: italic;">@LunaStorm</div>
+                                    <div class="w-2 h-2 bg-green-400 rounded-full" title="⚡️ онлайн"></div>
+                                </div>
+                                <div class="text-white" style="font-family: 'Georgia', serif; font-style: italic;">Шторм, твои цитаты — огонь. Добавь ещё про любовь! 💕</div>
+                                <div class="text-xs text-gray-400 mt-2">12 минут назад</div>
+                            </div>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+                    </div>
+                </div>
+                
+                <!-- Media Upload Preview -->
+                <div id="mediaPreview" class="hidden p-4 border-t border-storm-blue/30 bg-storm-dark/30">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-storm-blue/20 rounded-lg flex items-center justify-center">📷</div>
+                            <div>
+                                <div class="text-sm font-bold">Фото готово к отправке</div>
+                                <div class="text-xs text-gray-400">image.jpg</div>
+                            </div>
+                        </div>
+                        <button onclick="cancelMedia()" class="text-red-400 hover:text-red-300">✕</button>
+                    </div>
+                </div>
+                
+                <!-- Chat Input -->
+                <div class="p-4 border-t border-storm-blue/30 bg-storm-dark/30">
+                    <!-- Media Buttons -->
+                    <div class="flex gap-2 mb-3">
+                        <button onclick="uploadPhoto()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="Фото/Видео">📷</button>
+                        <button onclick="recordVoice()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="Голосовое сообщение">🎤</button>
+                        <button onclick="createPoll()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="Опрос">📊</button>
+                        <button onclick="addGif()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="GIF">🎭</button>
+                        <button onclick="addMusic()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="Музыка">🎵</button>
+                        <button onclick="recordVideo()" class="bg-storm-gray hover:bg-storm-blue/20 p-2 rounded-full transition-colors" title="Видеосообщение">🎥</button>
+                    </div>
+                    
+                    <!-- Message Input -->
+                    <div class="flex gap-3">
+                        <input type="text" id="messageInput" placeholder="Напиши что-то штормовое..." class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                        <button onclick="sendMessage()" class="bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-6 py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                            Отправить ⚡
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Rules -->
+            <div class="mt-8 bg-storm-gray/30 backdrop-blur-md rounded-2xl p-6 border border-storm-blue/20">
+                <h3 class="text-xl font-bold text-storm-blue mb-4">⚡ Правила Storm Chat</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                    <div>• Уважай других участников</div>
+                    <div>• Никакого спама и флуда</div>
+                    <div>• Запрещены оскорбления</div>
+                    <div>• Контент только 16+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elite Page -->
+    <div id="elite" class="page hidden min-h-screen pt-20">
+        <div class="max-w-4xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center font-storm">👑 ELITE JS</h2>
+            <p class="text-center text-xl text-gray-300 mb-8 italic">"ELITE JS — ты либо внутри, либо снаружи."</p>
+            
+            <!-- Elite Intro -->
+            <div class="bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
+                <h3 class="text-3xl font-bold text-storm-blue mb-6 font-storm">Элита — это не статус. Это ответственность.</h3>
+                <div class="text-lg text-gray-300 mb-8 leading-relaxed">
+                    Здесь только те, кто готов идти до конца. Мы не просто подписчики — мы команда, которая создаёт легенду. 
+                    <br><br>
+                    <span class="text-storm-neon font-bold">Ты уверен, что готов к шторму?</span>
+                </div>
+                <button onclick="showEliteForm()" class="bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-all storm-glow">
+                    👑 Подать заявку
+                </button>
+            </div>
+            
+            <!-- Elite Form (Hidden by default) -->
+            <div id="eliteForm" class="hidden bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">📝 Анкета для вступления в Элиту</h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-storm-blue font-bold mb-2">Никнейм *</label>
+                        <input type="text" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none" placeholder="Твой уникальный никнейм">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-storm-blue font-bold mb-2">Email *</label>
+                        <input type="email" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none" placeholder="для уведомлений">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-storm-blue font-bold mb-2">Соцсети</label>
+                        <input type="text" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none" placeholder="Ссылки на твои профили">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-storm-blue font-bold mb-2">Почему ты хочешь в Элиту? *</label>
+                        <textarea class="w-full bg-storm-dark border border-storm-blue/30 rounded-2xl px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none h-32 resize-none" placeholder="Расскажи о своих мотивах..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-storm-blue font-bold mb-2">Что ты готов сделать для сообщества? *</label>
+                        <select class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white focus:border-storm-blue focus:outline-none">
+                            <option value="">Выбери вариант</option>
+                            <option value="moderation">Помогать с модерацией</option>
+                            <option value="content">Создавать контент</option>
+                            <option value="promotion">Продвигать сообщество</option>
+                            <option value="all">Всё вышеперечисленное</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" id="eliteRules" class="w-5 h-5 text-storm-blue bg-storm-dark border-storm-blue/30 rounded focus:ring-storm-blue">
+                        <label for="eliteRules" class="text-gray-300">Я понимаю, что нарушение правил приведёт к бану</label>
+                    </div>
+                    
+                    <button onclick="submitEliteForm()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-4 rounded-full font-bold text-lg hover:scale-105 transition-all storm-glow">
+                        ⚡ Отправить заявку
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Elite Benefits -->
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">⚡ Что внутри Elite JS?</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>• 🎥 Закрытые стримы с Jackson_Storm429</li>
+                        <li>• 💬 Доступ к личному чату с создателем</li>
+                        <li>• 🎨 NFT-визитки "Storm Pass"</li>
+                        <li>• 🔥 Эксклюзивный контент и цитаты</li>
+                        <li>• 👑 Особый статус и значок Elite JS</li>
+                        <li>• 🎯 Участие в создании контента</li>
+                        <li>• 🌟 Приоритетная поддержка</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">🌪️ Философия Элиты</h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p class="italic">"Элита — это не про исключительность. Это про готовность гореть."</p>
+                        <p class="italic">"Мы не просто группа. Мы — ядро шторма."</p>
+                        <p class="text-storm-neon font-bold">Готов стать частью легенды?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Storm Shop Page -->
+    <div id="shop" class="page hidden min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center font-storm">🛒 STORM SHOP</h2>
+            <p class="text-center text-gray-300 mb-12 text-xl">
+                <span class="text-storm-neon font-bold italic">"Купи не просто файл — купи часть моей харизмы."</span>
+            </p>
+            
+            <!-- Products Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Product 1 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">💬</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">Фразы, которые взрывают DM</h3>
+                    <p class="text-gray-300 mb-6 text-center">PDF-сборник самых мощных фраз для переписки. 50+ проверенных линий для любой ситуации.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">$19.99</div>
+                        <div class="text-sm text-gray-400">PDF • 25 страниц</div>
+                    </div>
+                    <button onclick="selectProduct('dm-phrases', 19.99)" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить сейчас
+                    </button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">🎧</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">Аудио-библиотека вайбов</h3>
+                    <p class="text-gray-300 mb-6 text-center">Пак эксклюзивных голосовых сообщений. 20 треков с мотивацией и философией.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">$29.99</div>
+                        <div class="text-sm text-gray-400">MP3 • 20 треков</div>
+                    </div>
+                    <button onclick="selectProduct('audio-vibes', 29.99)" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить сейчас
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">👁️</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">Гайд по стилю Jackson_Storm429</h3>
+                    <p class="text-gray-300 mb-6 text-center">Визуальный мудборд + текстовый гайд по созданию уникального образа и харизмы.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">$39.99</div>
+                        <div class="text-sm text-gray-400">PDF + Images • 40 страниц</div>
+                    </div>
+                    <button onclick="selectProduct('style-guide', 39.99)" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить сейчас
+                    </button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">🚫</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">Чёрный список фраз</h3>
+                    <p class="text-gray-300 mb-6 text-center">PDF-гайд: что никогда не писать в DM. 100+ примеров фраз, которые убивают харизму.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">$14.99</div>
+                        <div class="text-sm text-gray-400">PDF • 15 страниц</div>
+                    </div>
+                    <button onclick="selectProduct('blacklist-phrases', 14.99)" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить сейчас
+                    </button>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">🔊</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">Голосовой модуль</h3>
+                    <p class="text-gray-300 mb-6 text-center">Кастомизация аудио-уведомлений. Звуки в стиле Jackson_Storm429 для твоих устройств.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">$24.99</div>
+                        <div class="text-sm text-gray-400">ZIP • 12 звуков</div>
+                    </div>
+                    <button onclick="selectProduct('voice-module', 24.99)" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить сейчас
+                    </button>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 hover:border-storm-blue transition-all hover:scale-105 hover:shadow-2xl hover:shadow-storm-blue/20">
+                    <div class="text-6xl text-center mb-6 storm-float">🎨</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4 text-center">NFT Storm Artifacts</h3>
+                    <p class="text-gray-300 mb-6 text-center">Эксклюзивная коллекция цифровых артефактов. Только для владельцев Elite JS Pass.</p>
+                    <div class="text-center mb-6">
+                        <div class="text-3xl font-bold text-storm-neon">0.05 ETH</div>
+                        <div class="text-sm text-gray-400">NFT • Уникальный</div>
+                    </div>
+                    <button onclick="selectProduct('nft-artifacts', 'ETH')" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Купить за ETH
+                    </button>
+                </div>
+            </div>
+
+            <!-- Purchase Form -->
+            <div id="purchaseForm" class="hidden bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">💳 Оформление покупки</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Order Summary -->
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <h4 class="text-xl font-bold text-storm-blue mb-4">📦 Ваш заказ</h4>
+                        <div id="orderSummary" class="space-y-3">
+                            <!-- Order details will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Payment Form -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-storm-blue font-bold mb-2">Email для получения файлов *</label>
+                            <input type="email" id="buyerEmail" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none" placeholder="your@email.com" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-storm-blue font-bold mb-2">Способ оплаты *</label>
+                            <select id="paymentMethod" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white focus:border-storm-blue focus:outline-none" required>
+                                <option value="">Выберите способ оплаты</option>
+                                <option value="paypal">💳 PayPal</option>
+                                <option value="bitcoin">₿ Bitcoin</option>
+                                <option value="usdt">💰 USDT (TRC20)</option>
+                                <option value="ethereum">⟠ Ethereum</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="agreeTerms" class="w-5 h-5 text-storm-blue bg-storm-dark border-storm-blue/30 rounded focus:ring-storm-blue">
+                            <label for="agreeTerms" class="text-gray-300">Согласен с условиями покупки</label>
+                        </div>
+
+                        <button onclick="processPurchase()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-4 rounded-full font-bold text-lg hover:scale-105 transition-all storm-glow">
+                            ⚡ Оплатить заказ
+                        </button>
+
+                        <button onclick="cancelPurchase()" class="w-full bg-storm-gray border border-storm-blue/30 py-3 rounded-full font-bold hover:bg-storm-blue/20 transition-colors">
+                            Отменить
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Info -->
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">⚡ Как это работает</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark font-bold text-sm">1</div>
+                            <div>Выбираешь товар и нажимаешь "Купить"</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark font-bold text-sm">2</div>
+                            <div>Указываешь email и способ оплаты</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark font-bold text-sm">3</div>
+                            <div>Оплачиваешь через выбранный способ</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-storm-blue rounded-full flex items-center justify-center text-storm-dark font-bold text-sm">4</div>
+                            <div>Получаешь файлы на почту в течение 5 минут</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">🛡️ Гарантии</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <div>• Все файлы проверены и работают</div>
+                        <div>• Возврат средств в течение 7 дней</div>
+                        <div>• Техподдержка 24/7</div>
+                        <div>• Безопасная оплата</div>
+                        <div>• Эксклюзивный контент только здесь</div>
+                    </div>
+                    <div class="mt-6 p-4 bg-storm-blue/10 rounded-xl border border-storm-blue/30">
+                        <p class="text-storm-neon font-bold text-center text-sm">
+                            Все покупки защищены гарантией качества Jackson_Storm429
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page hidden min-h-screen pt-20 relative">
+        <!-- Animated World Map Background -->
+        <div class="absolute inset-0 opacity-10 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-storm-blue/20 to-storm-electric/20 relative">
+                <!-- Storm markers -->
+                <div class="absolute top-1/4 left-1/3 w-4 h-4 bg-storm-neon rounded-full animate-pulse"></div>
+                <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-storm-pink rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                <div class="absolute top-1/3 right-1/4 w-4 h-4 bg-storm-blue rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-1/3 left-1/4 w-4 h-4 bg-storm-electric rounded-full animate-pulse" style="animation-delay: 1.5s;"></div>
+                <div class="absolute bottom-1/4 right-1/3 w-4 h-4 bg-storm-neon rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 py-12 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center">💌 КОНТАКТЫ</h2>
+            <p class="text-center text-gray-300 mb-8 text-lg">Карта показывает, где прошёл шторм ⚡</p>
+            
+            <!-- Contact Form -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">💬 Связь с эпицентром</h3>
+                <div class="space-y-4">
+                    <div>
+                        <input type="text" placeholder="Твоё имя" class="w-full bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                    </div>
+                    <div>
+                        <textarea placeholder="Твоё сообщение..." class="w-full bg-storm-dark border border-storm-blue/30 rounded-2xl px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none h-32 resize-none"></textarea>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button onclick="attachMeme()" class="bg-storm-gray border border-storm-blue/30 px-4 py-2 rounded-full hover:bg-storm-blue/20 transition-colors">
+                            📎 Прикрепить мем
+                        </button>
+                        <div class="text-sm text-gray-400">(опционально)</div>
+                    </div>
+                    <button onclick="sendToStorm()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-4 rounded-full font-bold text-lg hover:scale-105 transition-all storm-glow">
+                        ⚡ Отправить в эпицентр
+                    </button>
+                </div>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4">📬 Штормовой прогноз</h3>
+                <p class="text-gray-300 mb-6">Подписывайся на рассылку — получай лучшие мысли и вайбы прямо на почту</p>
+                <div class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" placeholder="твой@email.com" class="flex-1 bg-storm-dark border border-storm-blue/30 rounded-full px-6 py-3 text-white placeholder-gray-400 focus:border-storm-blue focus:outline-none">
+                    <button class="bg-storm-blue text-storm-dark px-8 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors storm-glow">
+                        Подписаться ⚡
+                    </button>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 mb-8 border border-storm-blue/30 text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-4">☕ Поддержать</h3>
+                <p class="text-gray-300 mb-6">Поддержи шторм — получи бонусы</p>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-all">
+                        ₿ Bitcoin
+                    </button>
+                    <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-all">
+                        💰 USDT
+                    </button>
+                    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-all">
+                        💳 PayPal
+                    </button>
+                </div>
+                <button class="bg-storm-gray border border-storm-blue px-8 py-3 rounded-full font-bold hover:bg-storm-blue hover:text-storm-dark transition-colors">
+                    🙏 Просто спасибо
+                </button>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-6">📱 Связь со мной</h3>
+                    <div class="space-y-4">
+                        <a href="#" class="flex items-center gap-4 p-4 bg-storm-dark/50 rounded-xl hover:bg-storm-blue/20 transition-colors">
+                            <div class="text-2xl">📧</div>
+                            <div>
+                                <div class="font-bold">Email</div>
+                                <div class="text-sm text-gray-400">jackson.storm429@gmail.com</div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center gap-4 p-4 bg-storm-dark/50 rounded-xl hover:bg-storm-blue/20 transition-colors">
+                            <div class="text-2xl">💬</div>
+                            <div>
+                                <div class="font-bold">Telegram</div>
+                                <div class="text-sm text-gray-400">@jackson_storm429</div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center gap-4 p-4 bg-storm-dark/50 rounded-xl hover:bg-storm-blue/20 transition-colors">
+                            <div class="text-2xl">🎮</div>
+                            <div>
+                                <div class="font-bold">Discord</div>
+                                <div class="text-sm text-gray-400">Jackson_Storm#0429</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30">
+                    <h3 class="text-2xl font-bold text-storm-blue mb-6">🚀 Будущие проекты</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-storm-dark/50 rounded-xl">
+                            <div class="font-bold mb-2">📚 PDF-гайды</div>
+                            <div class="text-sm text-gray-400">Сборники цитат и фраз для прокачки харизмы</div>
+                        </div>
+                        <div class="p-4 bg-storm-dark/50 rounded-xl">
+                            <div class="font-bold mb-2">🎙️ Подкаст</div>
+                            <div class="text-sm text-gray-400">"Штормовые беседы" — глубокие разговоры о жизни</div>
+                        </div>
+                        <div class="p-4 bg-storm-dark/50 rounded-xl">
+                            <div class="font-bold mb-2">👥 Jackson's Circle</div>
+                            <div class="text-sm text-gray-400">Закрытое сообщество единомышленников</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Features Page -->
+    <div id="future" class="page hidden min-h-screen pt-20">
+        <div class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-8 text-center font-storm">🚀 ЧТО ДАЛЬШЕ?</h2>
+            <p class="text-center text-xl text-gray-300 mb-12 italic">"Будущее не ждёт. Оно создаётся." — Jackson_Storm429</p>
+            
+            <!-- Main Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Vibe Radar -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">🌀</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">VIBE RADAR</h3>
+                    <p class="text-gray-300 mb-6">Анимированный датчик (как в RPG), показывающий уровень энергии пользователя</p>
+                    <div class="bg-storm-dark/50 rounded-xl p-4 mb-6">
+                        <div class="text-sm text-gray-400 mb-2">Твой уровень энергии:</div>
+                        <div class="w-full bg-storm-dark rounded-full h-3 relative overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-storm-blue to-storm-neon rounded-full transition-all storm-glow" style="width: 73%"></div>
+                        </div>
+                        <div class="text-storm-neon font-bold mt-2">Глаз бури ⚡</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mb-4">Кликни 5 раз для секрета</div>
+                    <button onclick="useVibeRadar()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+
+                <!-- Storm Avatar -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">🎭</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">STORM AVATAR BUILDER</h3>
+                    <p class="text-gray-300 mb-6">Создай цифровую версию себя в стиле Jackson_Storm429</p>
+                    <div class="space-y-2 text-sm text-gray-400 mb-6">
+                        <div>• Выбор ауры (цвет молнии)</div>
+                        <div>• Фразы-манифесты</div>
+                        <div>• Фон (космос, город, абстракция)</div>
+                        <div>• Готовый арт + NFT</div>
+                    </div>
+                    <button onclick="useStormAvatar()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+
+                <!-- Digital Oracle -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">📡</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">ЦИФРОВОЙ ОРАКУЛ</h3>
+                    <p class="text-gray-300 mb-6">Ответы на вопросы в стиле Jackson_Storm429</p>
+                    <div class="bg-storm-dark/50 rounded-xl p-4 mb-6">
+                        <div class="text-xs text-gray-400 mb-2">Пример ответа:</div>
+                        <div class="text-sm text-storm-neon italic">"Если ты спрашиваешь — ты уже проиграл. Будь штормом, а не дождиком."</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mb-4">Можно "криптовать" ответ в QR-код</div>
+                    <button onclick="useDigitalOracle()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+
+                <!-- Collectible Badges -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">💎</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">COLLECTIBLE BADGES</h3>
+                    <p class="text-gray-300 mb-6">Значки за активность с анимированными preview</p>
+                    <div class="flex justify-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-storm-blue rounded-full flex items-center justify-center text-xs storm-pulse" title="Гроза чата">⚡</div>
+                        <div class="w-8 h-8 bg-storm-neon rounded-full flex items-center justify-center text-xs storm-pulse" title="Повелитель цитат">💬</div>
+                        <div class="w-8 h-8 bg-storm-pink rounded-full flex items-center justify-center text-xs storm-pulse" title="Элита 2.0">👑</div>
+                    </div>
+                    <div class="space-y-1 text-xs text-gray-400 mb-6">
+                        <div>"Гроза чата" (100 сообщений)</div>
+                        <div>"Повелитель цитат" (50 лайков)</div>
+                        <div>"Элита 2.0" (закрытые чаты)</div>
+                    </div>
+                    <button onclick="useCollectibleBadges()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+
+                <!-- Secret Lore -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">🌌</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">SECRET LORE ARCHIVE</h3>
+                    <p class="text-gray-300 mb-6">Теории, скрытые послания и альтернативная биография Jackson_Storm429</p>
+                    <div class="bg-storm-dark/50 rounded-xl p-4 mb-6">
+                        <div class="text-xs text-storm-neon mb-2">Примеры теорий:</div>
+                        <div class="text-xs text-gray-400">• "Jackson_Storm429 — цифровой дух из 2077?"</div>
+                        <div class="text-xs text-gray-400">• "Почему его цвет — синий?"</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mb-4">Доступ через квест (найти 5 цитат-пазлов)</div>
+                    <button onclick="useSecretLore()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+
+                <!-- Storm Mini-Game -->
+                <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 text-center hover:border-storm-blue transition-all hover:scale-105">
+                    <div class="text-6xl mb-4 storm-float">🎮</div>
+                    <h3 class="text-xl font-bold text-storm-blue mb-4">STORM MINI-GAME</h3>
+                    <p class="text-gray-300 mb-6">Игра "Поймай молнию" - управляй шариком энергии, избегая препятствий</p>
+                    <div class="bg-storm-dark/50 rounded-xl p-4 mb-6">
+                        <div class="text-sm text-storm-neon mb-2">Цель: 1000 очков</div>
+                        <div class="text-xs text-gray-400">Награда: роль "Storm Chaser" в чате</div>
+                    </div>
+                    <div class="text-xs text-gray-400 mb-4">Саундтрек из раздела "Звук Шторма"</div>
+                    <button onclick="useStormGame()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                        ⚡ Использовать
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vibe Manifesto Generator -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 mb-12">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">🔮 VIBE MANIFESTO GENERATOR</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-gray-300 mb-6">Генератор персональных манифестов в стиле Jackson_Storm429</p>
+                        <div class="space-y-3 mb-6">
+                            <button onclick="generateManifesto('power')" class="w-full bg-storm-dark border border-storm-blue/30 py-3 rounded-full hover:bg-storm-blue/20 transition-colors font-bold">💪 Сила</button>
+                            <button onclick="generateManifesto('love')" class="w-full bg-storm-dark border border-storm-blue/30 py-3 rounded-full hover:bg-storm-blue/20 transition-colors font-bold">❤️ Любовь</button>
+                            <button onclick="generateManifesto('money')" class="w-full bg-storm-dark border border-storm-blue/30 py-3 rounded-full hover:bg-storm-blue/20 transition-colors font-bold">💰 Деньги</button>
+                        </div>
+                        <button onclick="useManifestoGenerator()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                            ⚡ Использовать генератор
+                        </button>
+                    </div>
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <div class="text-storm-neon font-bold mb-4">Твой манифест:</div>
+                        <div id="manifestoText" class="text-gray-300 italic mb-4">
+                            "Ты не просишь — ты берешь. Не ждешь — ты создаешь. Забудь правила — пиши свои."
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="saveAsWallpaper()" class="flex-1 bg-storm-blue text-storm-dark px-4 py-2 rounded-full text-sm font-bold hover:bg-storm-electric transition-colors">
+                                Сохранить как обои
+                            </button>
+                            <button onclick="sendToEnemy()" class="flex-1 bg-storm-pink text-storm-dark px-4 py-2 rounded-full text-sm font-bold hover:bg-red-500 transition-colors">
+                                Отправить врагу
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Warrior -->
+            <div class="bg-storm-gray/50 backdrop-blur-md rounded-2xl p-8 border border-storm-blue/30 mb-12">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6 text-center">📲 SOCIAL MEDIA WARRIOR</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-gray-300 mb-6">Интеграция с соцсетями для автоматического постинга</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="bg-storm-dark/50 rounded-xl p-4">
+                                <div class="font-bold text-storm-neon mb-2">Автопостинг цитат</div>
+                                <div class="text-sm text-gray-400">Twitter/Instagram (раз в день)</div>
+                            </div>
+                            <div class="bg-storm-dark/50 rounded-xl p-4">
+                                <div class="font-bold text-storm-neon mb-2">Кнопка "Взорвать сеть"</div>
+                                <div class="text-sm text-gray-400">Публикует рандомную провокационную фразу</div>
+                            </div>
+                        </div>
+                        <button onclick="useSocialWarrior()" class="w-full bg-gradient-to-r from-storm-blue to-storm-neon text-storm-dark py-3 rounded-full font-bold hover:scale-105 transition-all storm-glow">
+                            ⚡ Использовать
+                        </button>
+                    </div>
+                    <div class="bg-storm-dark/50 rounded-xl p-6">
+                        <div class="text-storm-neon font-bold mb-4">Подключённые аккаунты:</div>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm">📷</div>
+                                <div class="text-gray-300">Instagram: @storm_vibes</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">🐦</div>
+                                <div class="text-gray-300">Twitter: @jackson_storm429</div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm">🎵</div>
+                                <div class="text-gray-300">TikTok: @storm_energy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Features -->
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-storm-blue mb-6">📱 СКОРО</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-storm-dark/30 rounded-xl p-6 border border-storm-blue/20 hover:border-storm-blue/50 transition-all">
+                        <div class="text-4xl mb-4">📺</div>
+                        <div class="font-bold text-storm-neon mb-2">Twitch интеграция</div>
+                        <div class="text-sm text-gray-400 mb-4">Стримы "Storm Talks" в реальном времени</div>
+                        <div class="text-xs text-storm-blue">Запуск: Q2 2025</div>
+                    </div>
+                    <div class="bg-storm-dark/30 rounded-xl p-6 border border-storm-blue/20 hover:border-storm-blue/50 transition-all">
+                        <div class="text-4xl mb-4">📱</div>
+                        <div class="font-bold text-storm-neon mb-2">Мобильное приложение</div>
+                        <div class="text-sm text-gray-400 mb-4">Пуш-уведомления "Шторм приближается"</div>
+                        <div class="text-xs text-storm-blue">Запуск: Q3 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-storm-gray/30 backdrop-blur-md border-t border-storm-blue/30 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="text-2xl font-bold gradient-text mb-4">JACKSON_STORM429</div>
+            <div class="text-gray-400 mb-4">VIBE UNIVERSE © 2025</div>
+            <div class="text-sm text-gray-500">"Я не просто ник, я явление" 😎</div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Posts Filter
+        function filterPosts(category) {
+            const posts = document.querySelectorAll('.post-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update button states
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-storm-blue', 'text-storm-dark');
+                btn.classList.add('bg-storm-gray');
+            });
+            
+            event.target.classList.add('active', 'bg-storm-blue', 'text-storm-dark');
+            event.target.classList.remove('bg-storm-gray');
+            
+            // Filter posts
+            posts.forEach(post => {
+                if (category === 'all' || post.classList.contains(category)) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        // Random Quote Generator
+        const quotes = [
+            "Шторм не извиняется за свою силу",
+            "Тишина перед бурей — это не покой, это подготовка",
+            "Не будь копией. Будь оригиналом, которого копируют",
+            "Давление создаёт алмазы, а не жалобы",
+            "Цель без действия — просто мечта",
+            "Звёзды светят ярче в самую тёмную ночь",
+            "Энергия — это валюта будущего",
+            "Интроверт — это не слабость, это стратегия",
+            "Качество связей важнее их количества",
+            "Аутентичность — это новая роскошь",
+            "Шторм не спрашивает разрешения. Он просто приходит",
+            "Если тебя не обсуждают — ты не угроза",
+            "Я не ищу признания. Я создаю реальность, где его невозможно игнорировать",
+            "Ты либо часть вихря, либо пыль у него на пути"
+        ];
+
+        const dailyQuotes = [
+            "Шторм не спрашивает разрешения. Он просто приходит.",
+            "Если тебя не обсуждают — ты не угроза.",
+            "Я не ищу признания. Я создаю реальность, где его невозможно игнорировать.",
+            "Ты либо часть вихря, либо пыль у него на пути."
+        ];
+
+        function generateRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteElement = document.getElementById('randomQuote');
+            quoteElement.textContent = `"${quotes[randomIndex]}"`;
+            quoteElement.classList.add('storm-pulse');
+            
+            setTimeout(() => {
+                quoteElement.classList.remove('storm-pulse');
+            }, 2000);
+        }
+
+        function shareQuote() {
+            const quote = document.getElementById('dailyQuote').textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Jackson_Storm429 - Цитата дня',
+                    text: quote + ' — Jackson_Storm429'
+                });
+            } else {
+                navigator.clipboard.writeText(quote + ' — Jackson_Storm429');
+                alert('Цитата скопирована в буфер обмена! 📋');
+            }
+        }
+
+        // Chat Functions
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start gap-3 animate-fade-in';
+            messageDiv.innerHTML = `
+                <div class="w-10 h-10 bg-gradient-to-br from-storm-neon to-storm-pink rounded-full flex items-center justify-center text-white font-bold">U</div>
+                <div class="flex-1">
+                    <div class="bg-storm-dark/50 rounded-2xl p-4 border border-storm-blue/20">
+                        <div class="text-storm-neon text-sm mb-1">Пользователь</div>
+                        <div class="text-white">${message}</div>
+                        <div class="text-xs text-gray-400 mt-2">только что</div>
+                    </div>
+                </div>
+                <button class="text-gray-400 hover:text-red-400 text-sm">⚠️</button>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            input.value = '';
+        }
+
+        function uploadPhoto() {
+            document.getElementById('mediaPreview').classList.remove('hidden');
+        }
+
+        function cancelMedia() {
+            document.getElementById('mediaPreview').classList.add('hidden');
+        }
+
+        function recordVoice() {
+            alert('🎤 Функция записи голоса будет доступна в следующем обновлении!');
+        }
+
+        function createPoll() {
+            alert('📊 Функция создания опросов будет доступна в следующем обновлении!');
+        }
+
+        function addGif() {
+            alert('🎭 Библиотека GIF будет доступна в следующем обновлении!');
+        }
+
+        function addMusic() {
+            alert('🎵 Функция добавления музыки будет доступна в следующем обновлении!');
+        }
+
+        function recordVideo() {
+            alert('🎥 Функция записи видео будет доступна в следующем обновлении!');
+        }
+
+        // Elite Functions
+        function showEliteForm() {
+            document.getElementById('eliteForm').classList.remove('hidden');
+            document.getElementById('eliteForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitEliteForm() {
+            const checkbox = document.getElementById('eliteRules');
+            if (!checkbox.checked) {
+                alert('Необходимо согласиться с правилами!');
+                return;
+            }
+            
+            // Show success popup
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">Заявка принята!</h3>
+                    <p class="text-gray-300 mb-6">Твоя заявка принята. Ожидай ответ в течение 24 часов.</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Понятно
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Shop Functions
+        let selectedProduct = null;
+        let selectedPrice = 0;
+
+        function selectProduct(productId, price) {
+            selectedProduct = productId;
+            selectedPrice = price;
+            
+            const productNames = {
+                'dm-phrases': 'Фразы, которые взрывают DM',
+                'audio-vibes': 'Аудио-библиотека вайбов',
+                'style-guide': 'Гайд по стилю Jackson_Storm429'
+            };
+            
+            // Show purchase form
+            document.getElementById('purchaseForm').classList.remove('hidden');
+            document.getElementById('purchaseForm').scrollIntoView({ behavior: 'smooth' });
+            
+            // Update order summary
+            const orderSummary = document.getElementById('orderSummary');
+            orderSummary.innerHTML = `
+                <div class="flex justify-between items-center p-4 bg-storm-blue/10 rounded-lg border border-storm-blue/30">
+                    <div>
+                        <div class="font-bold text-white">${productNames[productId]}</div>
+                        <div class="text-sm text-gray-400">Цифровой товар</div>
+                    </div>
+                    <div class="text-xl font-bold text-storm-neon">$${price}</div>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-storm-blue/30">
+                    <div class="font-bold text-storm-blue">Итого:</div>
+                    <div class="text-2xl font-bold text-storm-neon">$${price}</div>
+                </div>
+            `;
+        }
+
+        function cancelPurchase() {
+            document.getElementById('purchaseForm').classList.add('hidden');
+            selectedProduct = null;
+            selectedPrice = 0;
+        }
+
+        function processPurchase() {
+            const email = document.getElementById('buyerEmail').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            if (!email || !paymentMethod || !agreeTerms) {
+                alert('Пожалуйста, заполните все обязательные поля и согласитесь с условиями!');
+                return;
+            }
+            
+            // Show success popup
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">Заказ принят!</h3>
+                    <p class="text-gray-300 mb-6">Ваш заказ обрабатывается. Файлы будут отправлены на ${email} в течение 5 минут.</p>
+                    <p class="text-sm text-storm-neon mb-6">Способ оплаты: ${paymentMethod}</p>
+                    <button onclick="this.parentElement.parentElement.remove(); cancelPurchase();" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Понятно
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Notification System
+        function showNotificationPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">🔔</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">Штормовые оповещения</h3>
+                    <p class="text-gray-300 mb-6">Хочешь получать уведомления о новых постах, подкастах и эксклюзивном контенте?</p>
+                    <div class="flex gap-4">
+                        <button onclick="subscribeNotifications(this.parentElement.parentElement.parentElement)" class="flex-1 bg-storm-blue text-storm-dark px-6 py-3 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                            Да, подписаться! ⚡
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="flex-1 bg-storm-gray border border-storm-blue/30 px-6 py-3 rounded-full font-bold hover:bg-storm-blue/20 transition-colors">
+                            Позже
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function subscribeNotifications(popup) {
+            // Request browser notification permission
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        // Show success message
+                        popup.innerHTML = `
+                            <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                                <div class="text-6xl mb-4">✅</div>
+                                <h3 class="text-2xl font-bold text-storm-blue mb-4">Подписка активна!</h3>
+                                <p class="text-gray-300 mb-6">Теперь ты не пропустишь ни одного шторма. Первое уведомление придёт через несколько секунд.</p>
+                                <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                                    Отлично!
+                                </button>
+                            </div>
+                        `;
+                        
+                        // Send test notification after 3 seconds
+                        setTimeout(() => {
+                            new Notification('Jackson_Storm429 ⚡', {
+                                body: 'Ты пропустил шторм. Нажми, чтобы вернуться в эпицентр.',
+                                icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⚡</text></svg>'
+                            });
+                            popup.remove();
+                        }, 3000);
+                    } else {
+                        popup.remove();
+                    }
+                });
+            } else {
+                popup.remove();
+            }
+        }
+
+        // Rating System
+        function rateStorm(rating) {
+            const stars = document.querySelectorAll('#interactiveRating span');
+            
+            // Update visual feedback
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('text-gray-600');
+                    star.classList.add('text-yellow-400', 'storm-pulse');
+                } else {
+                    star.classList.add('text-gray-600');
+                    star.classList.remove('text-yellow-400', 'storm-pulse');
+                }
+            });
+            
+            // Show thank you popup
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">Спасибо за оценку!</h3>
+                    <p class="text-gray-300 mb-6">Ты поставил ${rating} ${rating === 1 ? 'звезду' : rating < 5 ? 'звезды' : 'звёзд'}. Твоё мнение важно для шторма!</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Отлично!
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            
+            // Update the main rating display
+            const currentRating = document.getElementById('currentRating');
+            if (currentRating) {
+                const avgRating = ((4.9 * 2847 + rating) / 2848).toFixed(1);
+                currentRating.nextElementSibling.innerHTML = `<div class="text-lg text-storm-neon font-bold">${avgRating}/5 ⚡ (2,848 оценок)</div>`;
+            }
+        }
+
+        // Future Features Functions
+        function useVibeRadar() {
+            showFeaturePopup('VIBE RADAR', '🌀', 'Анализирую твою активность и энергию...', 'Твой вайб: VIBE OVERLOAD! ⚡');
+        }
+
+        function useStormAvatar() {
+            showFeaturePopup('STORM AVATAR BUILDER', '🎭', 'Создаю твою цифровую версию...', 'Аватар готов! Аура: Синяя молния ⚡');
+        }
+
+        function useDigitalOracle() {
+            const questions = [
+                'Что делать, если она не отвечает?',
+                'Как стать увереннее?',
+                'Стоит ли менять работу?',
+                'Как найти свой путь?'
+            ];
+            const answers = [
+                'Если она не отвечает — ты уже получил ответ. Будь штормом, а не дождиком.',
+                'Уверенность не приходит извне. Она рождается в действии.',
+                'Работа должна питать твою энергию, а не высасывать её.',
+                'Путь не находят. Его создают.'
+            ];
+            
+            const randomQ = questions[Math.floor(Math.random() * questions.length)];
+            const randomA = answers[Math.floor(Math.random() * answers.length)];
+            
+            showOraclePopup(randomQ, randomA);
+        }
+
+        function useCollectibleBadges() {
+            showFeaturePopup('COLLECTIBLE BADGES', '💎', 'Проверяю твою активность...', 'Получен значок "Исследователь будущего"! 🏆');
+        }
+
+        function useSecretLore() {
+            showFeaturePopup('SECRET LORE', '🌌', 'Сканирую скрытые послания...', 'Найдено: "Код 429 — это не число, это частота вибрации шторма"');
+        }
+
+        function useStormGame() {
+            showGamePopup();
+        }
+
+        function useManifestoGenerator() {
+            showFeaturePopup('MANIFESTO GENERATOR', '🔮', 'Генерирую персональный манифест...', 'Манифест создан! Сохранён в твоём профиле.');
+        }
+
+        function useSocialWarrior() {
+            showFeaturePopup('SOCIAL MEDIA WARRIOR', '📲', 'Подключаюсь к соцсетям...', 'Автопостинг активирован! Первый пост через 5 минут.');
+        }
+
+        function showFeaturePopup(title, icon, loadingText, successText) {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4 storm-pulse">${icon}</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">${title}</h3>
+                    <p class="text-gray-300 mb-6" id="popupText">${loadingText}</p>
+                    <div class="w-full bg-storm-dark rounded-full h-2 mb-6 overflow-hidden">
+                        <div id="progressBar" class="h-full bg-gradient-to-r from-storm-blue to-storm-neon rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold" disabled id="closeBtn">
+                        Загрузка...
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            
+            // Animate progress bar
+            const progressBar = popup.querySelector('#progressBar');
+            const popupText = popup.querySelector('#popupText');
+            const closeBtn = popup.querySelector('#closeBtn');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    progressBar.style.width = '100%';
+                    popupText.textContent = successText;
+                    closeBtn.textContent = 'Отлично!';
+                    closeBtn.disabled = false;
+                    closeBtn.classList.remove('opacity-50');
+                    clearInterval(interval);
+                } else {
+                    progressBar.style.width = progress + '%';
+                }
+            }, 200);
+        }
+
+        function showOraclePopup(question, answer) {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4 storm-pulse">📡</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">ЦИФРОВОЙ ОРАКУЛ</h3>
+                    <div class="bg-storm-dark/50 rounded-xl p-4 mb-4">
+                        <div class="text-sm text-gray-400 mb-2">Твой вопрос:</div>
+                        <div class="text-white italic">"${question}"</div>
+                    </div>
+                    <div class="bg-storm-blue/10 rounded-xl p-4 mb-6 border border-storm-blue/30">
+                        <div class="text-sm text-storm-blue mb-2">Ответ Jackson_Storm429:</div>
+                        <div class="text-storm-neon font-bold italic">"${answer}"</div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="generateQR()" class="flex-1 bg-storm-dark border border-storm-blue/30 px-4 py-2 rounded-full text-sm font-bold hover:bg-storm-blue/20 transition-colors">
+                            🔒 Криптовать в QR
+                        </button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" class="flex-1 bg-storm-blue text-storm-dark px-4 py-2 rounded-full text-sm font-bold">
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function showGamePopup() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4 storm-pulse">🎮</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">STORM MINI-GAME</h3>
+                    <div class="bg-storm-dark/50 rounded-xl p-6 mb-6">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <div class="text-lg font-bold text-storm-neon mb-2">Поймай молнию!</div>
+                        <div class="text-sm text-gray-400 mb-4">Используй стрелки для управления</div>
+                        <div class="text-2xl font-bold text-storm-blue">Счёт: <span id="gameScore">0</span></div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="startGame()" class="flex-1 bg-storm-blue text-storm-dark px-4 py-2 rounded-full font-bold hover:bg-storm-electric transition-colors">
+                            🎮 Играть
+                        </button>
+                        <button onclick="this.parentElement.parentElement.remove()" class="flex-1 bg-storm-gray border border-storm-blue/30 px-4 py-2 rounded-full font-bold hover:bg-storm-blue/20 transition-colors">
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function generateManifesto(theme) {
+            const manifestos = {
+                power: [
+                    "Сила не в мускулах — она в решимости. Ты не просишь разрешения, ты берёшь то, что твоё.",
+                    "Власть над собой — единственная власть, которая имеет значение. Остальное — иллюзия.",
+                    "Ты не жертва обстоятельств. Ты их создатель."
+                ],
+                love: [
+                    "Любовь — это не поиск половинки. Это встреча двух целых личностей.",
+                    "Не ищи того, кто дополнит тебя. Ищи того, кто усилит твою энергию.",
+                    "Настоящая близость начинается с близости к самому себе."
+                ],
+                money: [
+                    "Деньги — это энергия в материальной форме. Научись управлять энергией.",
+                    "Богатство — это не сумма на счету. Это свобода выбора.",
+                    "Не работай за деньги. Заставь деньги работать на тебя."
+                ]
+            };
+            
+            const themeManifestos = manifestos[theme];
+            const randomManifesto = themeManifestos[Math.floor(Math.random() * themeManifestos.length)];
+            
+            document.getElementById('manifestoText').textContent = `"${randomManifesto}"`;
+        }
+
+        function saveAsWallpaper() {
+            alert('📱 Манифест сохранён как обои! Проверь галерею.');
+        }
+
+        function sendToEnemy() {
+            alert('😈 Манифест отправлен! Пусть завидуют твоему вайбу.');
+        }
+
+        function generateQR() {
+            alert('🔒 QR-код сгенерирован! Только ты знаешь, что он означает.');
+        }
+
+        function startGame() {
+            alert('🎮 Игра запускается... Функция будет доступна в следующем обновлении!');
+        }
+
+        // Like System for Posts
+        function likePost(button) {
+            const likeCount = button.querySelector('.like-count');
+            let count = parseInt(likeCount.textContent.replace('K', '000').replace('.', ''));
+            count += 1;
+            
+            // Format the number
+            if (count >= 1000) {
+                likeCount.textContent = (count / 1000).toFixed(1) + 'K';
+            } else {
+                likeCount.textContent = count;
+            }
+            
+            // Add animation
+            button.classList.add('storm-pulse');
+            setTimeout(() => button.classList.remove('storm-pulse'), 1000);
+        }
+
+        // Music Player Functions
+        let isPlaying = false;
+        let currentTrackIndex = 0;
+        const tracks = [
+            { name: "Storm Energy - Motivation Mix", artist: "Jackson_Storm429", duration: "3:45" },
+            { name: "Midnight Thoughts", artist: "Jackson_Storm429", duration: "4:12" },
+            { name: "Workout Storm", artist: "Jackson_Storm429", duration: "2:58" }
+        ];
+
+        function togglePlay() {
+            const playBtn = document.getElementById('playPauseBtn');
+            const vinyl = document.getElementById('vinylRecord');
+            
+            isPlaying = !isPlaying;
+            playBtn.textContent = isPlaying ? '⏸️' : '▶️';
+            
+            if (isPlaying) {
+                vinyl.style.animation = 'spin 3s linear infinite';
+            } else {
+                vinyl.style.animation = 'none';
+            }
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            updateTrackInfo();
+        }
+
+        function previousTrack() {
+            currentTrackIndex = currentTrackIndex === 0 ? tracks.length - 1 : currentTrackIndex - 1;
+            updateTrackInfo();
+        }
+
+        function updateTrackInfo() {
+            const track = tracks[currentTrackIndex];
+            document.getElementById('currentTrack').textContent = track.name;
+            document.getElementById('currentArtist').textContent = track.artist;
+            document.getElementById('totalTime').textContent = track.duration;
+        }
+
+        function searchTracks() {
+            const query = document.getElementById('trackSearch').value;
+            if (query.trim()) {
+                alert(`🔍 Поиск "${query}" будет доступен в следующем обновлении!`);
+            }
+        }
+
+        // Archive Functions
+        function unlockArchive() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-md mx-4 text-center border border-storm-blue">
+                    <div class="text-6xl mb-4">🔓</div>
+                    <h3 class="text-2xl font-bold text-storm-blue mb-4">Архив разблокирован!</h3>
+                    <p class="text-gray-300 mb-6">Доступ к скрытым материалам получен. Проверь свою почту!</p>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Понятно
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Contact Functions
+        function attachMeme() {
+            alert('📎 Функция прикрепления мемов будет доступна в следующем обновлении!');
+        }
+
+        function sendToStorm() {
+            // Thunder sound effect (visual feedback)
+            const button = event.target;
+            button.textContent = '⚡ Отправлено!';
+            button.classList.add('storm-pulse');
+            
+            setTimeout(() => {
+                button.textContent = '⚡ Отправить в эпицентр';
+                button.classList.remove('storm-pulse');
+            }, 2000);
+        }
+
+        // Certification Functions
+        function showDiploma() {
+            const popup = document.createElement('div');
+            popup.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            popup.innerHTML = `
+                <div class="bg-storm-gray rounded-2xl p-8 max-w-2xl mx-4 text-center border border-storm-blue">
+                    <div class="bg-gradient-to-br from-storm-blue to-storm-electric p-8 rounded-xl mb-6">
+                        <div class="text-6xl mb-4">📜</div>
+                        <h3 class="text-3xl font-bold text-white mb-4 font-storm">STORM CERTIFICATE</h3>
+                        <div class="text-xl text-storm-dark font-bold mb-2">Jackson_Storm429</div>
+                        <div class="text-sm text-storm-dark/80 mb-4">Официальный сертификат подлинности</div>
+                        <div class="text-xs text-storm-dark/60">Выдан: 2025 • Действителен: 1 год</div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" class="bg-storm-blue text-storm-dark px-6 py-2 rounded-full font-bold">
+                        Закрыть
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        // Volume Control
+        document.addEventListener('DOMContentLoaded', function() {
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeValue = document.getElementById('volumeValue');
+            
+            if (volumeSlider) {
+                volumeSlider.addEventListener('input', function() {
+                    volumeValue.textContent = this.value + '%';
+                });
+            }
+        });
+
+        // Random Vibe Quote for VibeCheck posts
+        const vibeQuotes = [
+            "Не бойся быть другим. Бойся быть как все.",
+            "Твоя энергия — твоя валюта.",
+            "Шторм не извиняется за свою мощь.",
+            "Будь собой. Остальные роли уже заняты.",
+            "Качество важнее количества. Всегда.",
+            "Интроверт — это не слабость, это стратегия.",
+            "Аутентичность — новая роскошь."
+        ];
+
+        function updateVibeCheck() {
+            const vibeElement = document.getElementById('randomVibeQuote');
+            if (vibeElement) {
+                const randomIndex = Math.floor(Math.random() * vibeQuotes.length);
+                vibeElement.textContent = `"${vibeQuotes[randomIndex]}"`;
+            }
+        }
+
+        // CSS for vinyl spinning
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .slider::-webkit-slider-thumb {
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: linear-gradient(45deg, #0066FF, #00FFE0);
+                cursor: pointer;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+            
+            // Add Enter key support for chat
+            document.getElementById('messageInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Set random daily quote
+            const dailyQuoteElement = document.getElementById('dailyQuote');
+            const randomDailyIndex = Math.floor(Math.random() * dailyQuotes.length);
+            dailyQuoteElement.textContent = `"${dailyQuotes[randomDailyIndex]}"`;
+            
+            // Update VibeCheck quote
+            updateVibeCheck();
+            
+            // Show notification popup after 10 seconds
+            setTimeout(showNotificationPopup, 10000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9670f3ffc26ae32e',t:'MTc1MzgzNzU4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
